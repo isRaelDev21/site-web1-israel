@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Administrativo — COMPIA Editora</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+
+<!-- ================= LOGIN ================= -->
+<div id="admin-login-screen">
+  <div class="admin-login">
+    <div class="logo" style="margin-bottom:18px;">COMPIA <span>editora</span></div>
+    <h3>Acesso ao painel</h3>
+    <div class="alert alert-info">Demonstração — use um dos acessos abaixo:<br>
+      <strong>admin@compia.com.br</strong> / admin123 (Administrador)<br>
+      <strong>editor@compia.com.br</strong> / editor123 (Editor)<br>
+      <strong>vendedor@compia.com.br</strong> / vendedor123 (Vendedor)
+    </div>
+    <form id="admin-login-form">
+      <div class="field"><label>E-mail</label><input type="email" id="admin-email" required></div>
+      <div class="field"><label>Senha</label><input type="password" id="admin-senha" required></div>
+      <div id="admin-login-error" class="alert alert-error" style="display:none;">E-mail ou senha inválidos.</div>
+      <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- ================= SHELL ================= -->
+<div id="admin-shell" class="admin-shell" style="display:none;">
+  <aside class="admin-sidebar">
+    <div class="logo">COMPIA <span>editora</span></div>
+    <button data-panel="dashboard" class="active">Dashboard</button>
+    <button data-panel="produtos">Produtos</button>
+    <button data-panel="pedidos">Pedidos</button>
+    <button data-panel="clientes">Clientes</button>
+    <button data-panel="logs">Logs de atividade</button>
+    <button id="admin-logout" style="margin-top:20px; border-top:1px solid rgba(255,255,255,.15); padding-top:16px;">Sair</button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h2 style="margin:0;">Painel Administrativo</h2>
+      <span class="role-badge" id="admin-role-badge"></span>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="admin-panel active" id="panel-dashboard">
+      <div class="stat-cards">
+        <div class="stat-card"><div class="value" id="stat-vendas">R$ 0</div><div class="label">Vendas totais</div></div>
+        <div class="stat-card"><div class="value" id="stat-pedidos">0</div><div class="label">Pedidos</div></div>
+        <div class="stat-card"><div class="value" id="stat-produtos">0</div><div class="label">Produtos ativos</div></div>
+        <div class="stat-card"><div class="value" id="stat-clientes">0</div><div class="label">Clientes</div></div>
+      </div>
+      <div class="admin-table-wrap">
+        <table>
+          <thead><tr><th>Pedido</th><th>Cliente</th><th>Total</th><th>Status</th></tr></thead>
+          <tbody id="dashboard-recent-orders"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="admin-panel" id="panel-produtos">
+      <div class="admin-toolbar">
+        <span id="expected-images-hint" style="font-size:.85rem; color:var(--ink-soft);"></span>
+        <button class="btn btn-primary btn-sm" id="new-product-btn">+ Novo produto</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table>
+          <thead><tr><th>Imagem</th><th>Título</th><th>Categoria</th><th>Formato</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr></thead>
+          <tbody id="products-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PEDIDOS -->
+    <section class="admin-panel" id="panel-pedidos">
+      <div class="admin-table-wrap">
+        <table>
+          <thead><tr><th>Pedido</th><th>Data</th><th>Cliente</th><th>Pagamento</th><th>Entrega</th><th>Total</th><th>Status</th></tr></thead>
+          <tbody id="orders-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="admin-panel" id="panel-clientes">
+      <div class="admin-table-wrap">
+        <table>
+          <thead><tr><th>Nome</th><th>E-mail</th><th>Pedidos</th></tr></thead>
+          <tbody id="customers-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- LOGS -->
+    <section class="admin-panel" id="panel-logs">
+      <div class="admin-table-wrap" style="padding:16px;">
+        <div class="log-list" id="logs-list"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ================= MODAL: PRODUTO ================= -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal">
+    <button class="modal-close" id="close-product-modal">&times;</button>
+    <h3 id="product-modal-title">Novo produto</h3>
+    <form id="product-form">
+      <input type="hidden" id="pf-id">
+      <div class="field"><label>Título</label><input type="text" id="pf-title" required></div>
+      <div class="form-grid">
+        <div class="field"><label>Categoria</label><input type="text" id="pf-category" required></div>
+        <div class="field"><label>Formato</label>
+          <select id="pf-format">
+            <option value="fisico">Físico</option>
+            <option value="ebook">E-book</option>
+            <option value="kit">Kit</option>
+          </select>
+        </div>
+        <div class="field"><label>Preço (R$)</label><input type="number" step="0.01" id="pf-price" required></div>
+        <div class="field"><label>Estoque</label><input type="number" id="pf-stock" required></div>
+        <div class="field full"><label>Tags (separadas por vírgula)</label><input type="text" id="pf-tags"></div>
+        <div class="field full"><label>Nome do arquivo de imagem <small>(coloque este arquivo na pasta /images)</small></label><input type="text" id="pf-image" placeholder="ex: livro-titulo.jpg" required></div>
+        <div class="field full"><label>Descrição</label><input type="text" id="pf-description"></div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Salvar produto</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

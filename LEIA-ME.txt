@@ -1,0 +1,81 @@
+COMPIA EDITORA — LOJA VIRTUAL (protótipo funcional em HTML/CSS/JS)
+====================================================================
+
+COMO USAR
+---------
+1. Extraia esta pasta em qualquer lugar do seu computador.
+2. Abra o arquivo "index.html" em um navegador (Chrome, Edge, Firefox).
+   - Funciona direto no navegador (duplo clique), sem precisar de servidor.
+   - Para melhores resultados (ex.: evitar bloqueios de segurança do
+     navegador com arquivos locais), você pode também servir a pasta com
+     um servidor simples, por exemplo:
+        python3 -m http.server 8000
+     e acessar http://localhost:8000 no navegador.
+3. Coloque as imagens dos livros na pasta "images/" — veja a lista exata
+   de nomes de arquivo em "images/LEIA-ME-IMAGENS.txt". Enquanto uma
+   imagem não existir, o site mostra um retângulo com o nome do arquivo
+   esperado no lugar da capa (não quebra o layout).
+
+PÁGINAS DO SITE
+---------------
+- index.html            → Catálogo com busca, filtros por categoria/formato e ordenação.
+- produto.html?id=...   → Página de detalhes de cada produto.
+- carrinho.html         → Carrinho de compras, com cálculo de frete simulado por CEP.
+- checkout.html         → Finalização de compra: dados do cliente, entrega e pagamento
+                           (cartão de crédito ou PIX, ambos simulados).
+- pedido-confirmado.html→ Confirmação do pedido, com links de download para e-books.
+- conta.html            → Área do cliente: identificação simples por e-mail e histórico
+                           de pedidos.
+- admin.html            → Painel administrativo (veja acessos abaixo).
+
+ACESSO AO PAINEL ADMINISTRATIVO (admin.html)
+---------------------------------------------
+  admin@compia.com.br     senha: admin123      → Administrador (acesso total)
+  editor@compia.com.br    senha: editor123     → Editor (gerencia produtos)
+  vendedor@compia.com.br  senha: vendedor123   → Vendedor (gerencia pedidos e clientes)
+
+No painel você pode: cadastrar/editar/excluir produtos, acompanhar pedidos e
+mudar o status de cada um (pago, enviado, entregue, pendente), ver clientes
+cadastrados e consultar o log de atividades (quem fez o quê e quando).
+
+COMO FUNCIONA POR BAIXO DOS PANOS
+----------------------------------
+Este protótipo guarda os dados no armazenamento local do navegador
+(localStorage), funcionando como um "banco de dados" de demonstração:
+produtos, pedidos, clientes e logs. Isso permite testar o fluxo completo
+de compra sem precisar de um servidor ou banco de dados de verdade.
+
+O pagamento por cartão e o PIX (QR Code e código "copia e cola") são
+SIMULADOS — nenhuma cobrança real acontece. Para vender de verdade, é
+necessário integrar um gateway de pagamento real (Mercado Pago, PagSeguro,
+Stripe etc.) e um backend com banco de dados real.
+
+RECOMENDAÇÃO SOBRE A PLATAFORMA (conforme a especificação do projeto)
+------------------------------------------------------------------------
+A especificação original recomenda WordPress + WooCommerce como plataforma
+de produção, por já vir pronta com gateways de pagamento, PIX, integração
+de frete com Correios/transportadoras e um painel administrativo maduro
+para pessoas sem conhecimento técnico. Este protótipo em HTML/CSS/JS puro
+foi construído conforme solicitado (simples e sem dependências), e cobre
+todas as funcionalidades da especificação em modo de demonstração — ele é
+um ótimo ponto de partida para validar o catálogo, o fluxo de compra e o
+design antes de (ou em vez de) migrar para uma plataforma como o WooCommerce.
+
+ESTRUTURA DE ARQUIVOS
+----------------------
+index.html, produto.html, carrinho.html, checkout.html,
+pedido-confirmado.html, conta.html, admin.html
+css/style.css
+js/data.js         → catálogo inicial (10 produtos de exemplo)
+js/storage.js      → camada de dados (localStorage)
+js/cart.js         → lógica do carrinho, usada em todas as páginas
+js/catalog.js      → catálogo (index.html)
+js/product.js      → página de produto
+js/cart-page.js    → página do carrinho
+js/checkout.js     → checkout e simulação de pagamento
+js/confirmation.js → confirmação do pedido
+js/account.js      → área do cliente
+js/admin.js        → painel administrativo
+images/            → colocar as capas dos livros
+
+Por Israel Buriti Galvão - 122111123

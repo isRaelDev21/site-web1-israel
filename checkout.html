@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar compra — COMPIA Editora</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">COMPIA <span>editora</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Catálogo</a>
+      <a href="conta.html">Minha Conta</a>
+      <a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count" class="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <div class="page-header"><h1>Finalizar compra</h1></div>
+
+  <div class="checkout-layout">
+    <form id="checkout-form">
+
+      <div class="form-section">
+        <h3><span class="num">1</span> Seus dados</h3>
+        <div class="form-grid">
+          <div class="field"><label>Nome completo</label><input type="text" id="cf-nome" required></div>
+          <div class="field"><label>E-mail</label><input type="email" id="cf-email" required></div>
+          <div class="field full"><label>CPF</label><input type="text" id="cf-cpf" required placeholder="000.000.000-00"></div>
+        </div>
+      </div>
+
+      <div class="form-section" id="address-section">
+        <h3><span class="num">2</span> Endereço de entrega</h3>
+        <div class="form-grid">
+          <div class="field"><label>CEP</label><input type="text" id="cf-cep" required></div>
+          <div class="field"><label>Cidade</label><input type="text" id="cf-cidade" required></div>
+          <div class="field full"><label>Endereço (rua, número, complemento)</label><input type="text" id="cf-endereco" required></div>
+          <div class="field"><label>Método de entrega</label>
+            <select id="cf-shipping-method">
+              <option value="correios">Correios (PAC/SEDEX)</option>
+              <option value="transportadora">Transportadora</option>
+              <option value="retirada">Retirar no local</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3><span class="num">3</span> Pagamento</h3>
+        <div class="payment-methods">
+          <div class="payment-method selected" data-method="cartao" onclick="selectPayment(this)">Cartão de crédito</div>
+          <div class="payment-method" data-method="pix" onclick="selectPayment(this)">PIX</div>
+        </div>
+
+        <div class="payment-panel active" id="panel-cartao">
+          <div class="card-brands">
+            <span>Visa</span><span>Mastercard</span><span>Elo</span><span>Amex</span>
+          </div>
+          <div class="field"><label>Número do cartão</label><input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19"></div>
+          <div class="form-grid">
+            <div class="field full"><label>Nome impresso no cartão</label><input type="text" id="card-name"></div>
+            <div class="field"><label>Validade</label><input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5"></div>
+            <div class="field"><label>CVV</label><input type="text" id="card-cvv" placeholder="000" maxlength="4"></div>
+          </div>
+        </div>
+
+        <div class="payment-panel" id="panel-pix">
+          <div class="pix-box">
+            <div id="pix-qrcode"></div>
+            <p style="margin-bottom:6px;">Escaneie o QR Code com o app do seu banco ou copie o código:</p>
+            <div class="pix-code" id="pix-code-text">gerando código...</div>
+            <button type="button" class="btn btn-outline btn-sm" onclick="copyPixCode()">Copiar código PIX</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="padding:16px;">Confirmar pedido</button>
+    </form>
+
+    <div class="summary-box">
+      <h3>Resumo do pedido</h3>
+      <div id="checkout-items"></div>
+      <div class="summary-row"><span>Subtotal</span><span id="co-subtotal">R$ 0,00</span></div>
+      <div class="summary-row"><span>Frete</span><span id="co-shipping">R$ 0,00</span></div>
+      <div class="summary-row total"><span>Total</span><span id="co-total">R$ 0,00</span></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 COMPIA Editora — Materiais de Inteligência Artificial, Blockchain e Cibersegurança.</p>
+    <a href="admin.html" class="admin-link">Painel administrativo</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

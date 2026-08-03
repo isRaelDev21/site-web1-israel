@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMPIA Editora — Livros e materiais de Inteligência Artificial</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">COMPIA <span>editora</span></a>
+    <nav class="main-nav">
+      <a href="index.html">Catálogo</a>
+      <a href="conta.html">Minha Conta</a>
+      <a href="carrinho.html" class="cart-link">Carrinho <span id="cart-count" class="cart-count">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <span class="hero-eyebrow">Editora especializada em IA</span>
+      <h1>Conhecimento técnico para quem constrói o futuro inteligente.</h1>
+      <p>Livros físicos, e-books e kits sobre Inteligência Artificial, Arquitetura de Software, Blockchain, Criptografia e Cibersegurança — escritos por quem vive a área.</p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn btn-primary">Ver catálogo</a>
+        <a href="#categorias" class="btn btn-secondary">Explorar categorias</a>
+      </div>
+    </div>
+    <div class="hero-shelf" aria-hidden="true">
+      <div class="spine">IA</div>
+      <div class="spine">Blockchain</div>
+      <div class="spine">Cripto</div>
+      <div class="spine">Segurança</div>
+      <div class="spine">Arquitetura</div>
+      <div class="spine">Kits</div>
+    </div>
+  </div>
+</section>
+<div class="spine-rule"></div>
+
+<main class="container">
+  <div class="catalog-layout" id="catalogo">
+    <aside class="filters">
+      <div class="filter-group">
+        <h3>Buscar</h3>
+        <input type="search" id="search-input" placeholder="Título, tema...">
+      </div>
+      <div class="filter-group" id="categorias">
+        <h3>Categorias</h3>
+        <div id="category-filters"></div>
+      </div>
+      <div class="filter-group">
+        <h3>Formato</h3>
+        <label><input type="checkbox" value="fisico" class="format-filter"> Livro físico</label>
+        <label><input type="checkbox" value="ebook" class="format-filter"> E-book</label>
+        <label><input type="checkbox" value="kit" class="format-filter"> Kit</label>
+      </div>
+      <div class="filter-group">
+        <h3>Ordenar por</h3>
+        <select id="sort-select">
+          <option value="relevancia">Relevância</option>
+          <option value="menor-preco">Menor preço</option>
+          <option value="maior-preco">Maior preço</option>
+          <option value="nome">Nome (A-Z)</option>
+        </select>
+      </div>
+      <button class="clear-filters" id="clear-filters">Limpar filtros</button>
+    </aside>
+
+    <div>
+      <div class="catalog-toolbar">
+        <span class="result-count" id="result-count"></span>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>&copy; 2026 COMPIA Editora — Materiais de Inteligência Artificial, Blockchain e Cibersegurança.</p>
+    <a href="admin.html" class="admin-link">Painel administrativo</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/catalog.js"></script>
+</body>
+</html>
