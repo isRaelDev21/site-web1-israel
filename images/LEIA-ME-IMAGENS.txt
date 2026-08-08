@@ -1,0 +1,29 @@
+IMAGENS ESPERADAS PELA LOJA COMPIA EDITORA
+===========================================
+
+Coloque os arquivos abaixo dentro desta pasta 'images/', usando exatamente
+estes nomes (letras minúsculas, sem espaços e sem acentos). Formato recomendado:
+JPG para capas de livros, proporção retrato (ex.: 600x800px), até ~300KB cada.
+
+- livro-fundamentos-ia.jpg                      → Fundamentos de Inteligência Artificial (livro físico)
+- livro-arquitetura-software-inteligente.jpg    → Arquitetura de Software Inteligente (livro físico)
+- livro-redes-neurais-na-pratica.jpg            → Redes Neurais na Prática (livro físico)
+- livro-blockchain-na-pratica.jpg               → Blockchain na Prática (livro físico)
+- livro-ciberseguranca-essencial.jpg            → Cibersegurança Essencial (livro físico)
+- ebook-criptografia-aplicada.jpg               → Criptografia Aplicada (e-book)
+- ebook-machine-learning-avancado.jpg           → Machine Learning Avançado (e-book)
+- ebook-etica-governanca-ia.jpg                 → Ética e Governança em IA (e-book)
+- kit-iniciante-ia.jpg                          → Kit Iniciante em IA (kit)
+- kit-blockchain-criptografia.jpg               → Kit Blockchain & Criptografia (kit)
+- logo-compia.png                               → Logo da editora (opcional — não usado obrigatoriamente no layout atual)
+
+OBSERVAÇÕES
+-----------
+- Enquanto uma imagem não estiver presente, o site mostra automaticamente
+  um retângulo cinza com o nome do arquivo esperado no lugar da capa —
+  o layout não quebra.
+- Se você cadastrar novos produtos pelo Painel Admin (admin.html), o campo
+  'Nome do arquivo de imagem' define o nome que você deve usar ao salvar
+  a nova capa nesta pasta.
+
+Por Israel Buriti Galvão - 122111123
